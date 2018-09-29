@@ -4,3 +4,4 @@ __pycache__/
 table.numbers
 attempt1.db
 .DS_Store
+sqlalchemy/

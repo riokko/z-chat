@@ -1,15 +1,15 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+import csv
 
-from cars_declarative import Base, Car
+from carsdb import Car, db_session
 
-engine = create_engine('sqlite:///attempt2.db')
-Base.metadata.bind = engine
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+cars_list = []
+c = Car
 
-new_car = Car(licence_plate='A564EP777', car_owner='Вася Пупкин', phone_number='+7 916 733 66 66',
-    car_model='e85', color='серый', in_the_chat='да')
-session.add(new_car)
-session.commit()
+with open('table.csv', 'r', encoding='utf-8') as f:
+    fields = ['licence_plate', 'car_owner', 'hone_number', 'car_model', 'color', 'photo', 'in_the_chat', 'comment']
+    reader = csv.DictReader(f, fields, delimiter=';')
+    for row in reader:
+        cars_list.append(row)
+
+db_session.commit()
