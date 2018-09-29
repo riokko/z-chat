@@ -6,3 +6,4 @@ attempt1.db
 .DS_Store
 sqlalchemy/
 attempt2.db
+bot_settings.py
