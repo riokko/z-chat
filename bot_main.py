@@ -2,6 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 
 import settings
+import sort_by_numbers
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -15,6 +16,7 @@ def main():
 
     dp = mybot.dispatcher
 #    dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("plate", sort_by_numbers))
 
     mybot.start_polling()
     mybot.idle()
