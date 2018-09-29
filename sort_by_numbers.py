@@ -19,4 +19,5 @@ def plates (bot,update):
         reply_plates = "Это точно номер автомобиля?"
 
     print(reply_plates)
+    reply_text="Машина принадлежит {}".format(self.car_owner)
     update.message.reply_text(reply_plates)
