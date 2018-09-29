@@ -14,7 +14,7 @@ def plates (bot,update):
     user_phrase = user_phrase[1:]
 
     if user_phrase:
-        c.query.filter(Car.licence_plate==user_phrase).first()
+        c.query.filter(Car.licence_plate==user_phrase).all()
     else:
         reply_plates = "Это точно номер автомобиля?"
 
