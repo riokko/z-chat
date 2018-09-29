@@ -1,0 +1,150 @@
+2018-09-29 17:59:01,208 - INFO - Бот запускается
+2018-09-29 17:59:01,780 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235206A0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:02,190 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23520E80>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:02,571 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23535DD8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:02,883 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235492B0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 17:59:02,883 - WARNING - Failed bootstrap phase; try=1 max_retries=-1
+2018-09-29 17:59:10,740 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549128>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:11,129 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235496D8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:11,459 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235498D0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:11,748 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549AC8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 17:59:11,749 - WARNING - Failed bootstrap phase; try=2 max_retries=-1
+2018-09-29 17:59:23,303 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235494A8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:23,602 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549F28>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:23,902 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549F60>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:24,197 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549BE0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 17:59:24,197 - WARNING - Failed bootstrap phase; try=3 max_retries=-1
+2018-09-29 17:59:41,395 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549CC0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:41,722 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B235497F0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:42,045 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549588>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 17:59:42,392 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549400>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 17:59:42,392 - WARNING - Failed bootstrap phase; try=4 max_retries=-1
+2018-09-29 18:00:08,027 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23549A58>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:08,337 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23520E10>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:08,671 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B23535DA0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:09,060 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D5F8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 18:00:09,060 - WARNING - Failed bootstrap phase; try=5 max_retries=-1
+2018-09-29 18:00:47,314 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D470>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:47,671 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DA20>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:48,017 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DBE0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:00:48,368 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DDD8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 18:00:48,368 - WARNING - Failed bootstrap phase; try=6 max_retries=-1
+2018-09-29 18:01:18,674 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D7B8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:18,988 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DF28>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:19,386 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DDA0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:19,742 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DB00>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 18:01:19,742 - WARNING - Failed bootstrap phase; try=7 max_retries=-1
+2018-09-29 18:01:50,216 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356DFD0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:50,612 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D5F8>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:50,975 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D4E0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',)': /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook
+2018-09-29 18:01:51,364 - ERROR - Error while bootstrap del webhook: urllib3 HTTPError SOCKSHTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot688091655:AAEuXCkQsgklzMqX1tkb1ehA-UDHQkP_cVw/deleteWebhook (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021B2356D6A0>: Failed to establish a new connection: 0x02: Connection not allowed by ruleset',))
+2018-09-29 18:01:51,364 - WARNING - Failed bootstrap phase; try=8 max_retries=-1
+2018-09-29 18:02:39,520 - INFO - Бот запускается
+2018-09-29 18:05:36,203 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:05:36,340 - WARNING - Exiting immediately!
+2018-09-29 18:05:38,837 - INFO - Бот запускается
+2018-09-29 18:06:13,255 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:06:13,593 - WARNING - Exiting immediately!
+2018-09-29 18:06:15,331 - INFO - Бот запускается
+2018-09-29 18:07:13,289 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:07:13,443 - WARNING - Exiting immediately!
+2018-09-29 18:07:14,699 - INFO - Бот запускается
+2018-09-29 18:07:47,224 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:07:47,689 - WARNING - Exiting immediately!
+2018-09-29 18:07:49,228 - INFO - Бот запускается
+2018-09-29 18:08:45,166 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:08:45,320 - WARNING - Exiting immediately!
+2018-09-29 18:08:46,672 - INFO - Бот запускается
+2018-09-29 18:08:52,802 - ERROR - An uncaught error was raised while processing the update
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\dispatcher.py", line 279, in process_update
+    handler.handle_update(update, self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\commandhandler.py", line 173, in handle_update
+    return self.callback(dispatcher.bot, update, **optional_args)
+  File "C:\projects\tes\sort_by_numbers.py", line 10, in plates
+    user_text=update.message.user_text
+AttributeError: 'Message' object has no attribute 'user_text'
+2018-09-29 18:09:11,355 - ERROR - An uncaught error was raised while processing the update
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\dispatcher.py", line 279, in process_update
+    handler.handle_update(update, self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\commandhandler.py", line 173, in handle_update
+    return self.callback(dispatcher.bot, update, **optional_args)
+  File "C:\projects\tes\sort_by_numbers.py", line 10, in plates
+    user_text=update.message.user_text
+AttributeError: 'Message' object has no attribute 'user_text'
+2018-09-29 18:09:44,177 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:09:49,476 - WARNING - Exiting immediately!
+2018-09-29 18:09:56,930 - INFO - Бот запускается
+2018-09-29 18:10:03,489 - ERROR - An uncaught error was raised while processing the update
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\dispatcher.py", line 279, in process_update
+    handler.handle_update(update, self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\commandhandler.py", line 173, in handle_update
+    return self.callback(dispatcher.bot, update, **optional_args)
+  File "C:\projects\tes\sort_by_numbers.py", line 12, in plates
+    user_phrase = user_phrase.replace(symbol,"")
+UnboundLocalError: local variable 'user_phrase' referenced before assignment
+2018-09-29 18:10:43,377 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:10:49,344 - INFO - Бот запускается
+2018-09-29 18:10:52,916 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:10:59,958 - INFO - Бот запускается
+2018-09-29 18:11:12,024 - ERROR - An uncaught error was raised while processing the update
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.InterfaceError: Error binding parameter 0 - probably unsupported type.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\dispatcher.py", line 279, in process_update
+    handler.handle_update(update, self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\commandhandler.py", line 173, in handle_update
+    return self.callback(dispatcher.bot, update, **optional_args)
+  File "C:\projects\tes\sort_by_numbers.py", line 18, in plates
+    c.query.filter(Car.licence_plate==user_phrase).all()
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\query.py", line 2843, in all
+    return list(self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\query.py", line 2995, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\query.py", line 3018, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
+    context)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 265, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 248, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.InterfaceError: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type. [SQL: 'SELECT cars.id AS cars_id, cars.licence_plate AS cars_licence_plate, cars.car_owner AS cars_car_owner, cars.phone_number AS cars_phone_number, cars.car_model AS cars_car_model, cars.color AS cars_color, cars.photo AS cars_photo, cars.in_the_chat AS cars_in_the_chat, cars.comment AS cars_comment \nFROM cars \nWHERE cars.licence_plate = ?'] [parameters: (['B654XP'])] (Background on this error at: http://sqlalche.me/e/rvf5)
+2018-09-29 18:12:47,046 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:12:50,020 - WARNING - Exiting immediately!
+2018-09-29 18:12:53,125 - INFO - Бот запускается
+2018-09-29 18:13:02,747 - ERROR - An uncaught error was raised while processing the update
+Traceback (most recent call last):
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\dispatcher.py", line 279, in process_update
+    handler.handle_update(update, self)
+  File "C:\Users\armineakh\AppData\Local\Programs\Python\Python36\lib\site-packages\telegram\ext\commandhandler.py", line 173, in handle_update
+    return self.callback(dispatcher.bot, update, **optional_args)
+  File "C:\projects\tes\sort_by_numbers.py", line 22, in plates
+    print(reply_plates)
+UnboundLocalError: local variable 'reply_plates' referenced before assignment
+2018-09-29 18:15:20,326 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:15:23,773 - WARNING - Exiting immediately!
+2018-09-29 18:15:26,711 - INFO - Бот запускается
+2018-09-29 18:16:57,972 - INFO - Received signal 2 (SIGINT), stopping...
+2018-09-29 18:17:01,264 - WARNING - Exiting immediately!

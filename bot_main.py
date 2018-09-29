@@ -10,13 +10,13 @@ logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     )
 
 def main():
-    mybot = Updater(settings.API_KEY, request_kwargs=settings.PROXY)
+    mybot = Updater(settings.API_KEY)#, request_kwargs=settings.PROXY)
     
     logging.info('Бот запускается')
 
     dp = mybot.dispatcher
 #    dp.add_handler(CommandHandler("start", greet_user))
-    dp.add_handler(CommandHandler("plate", sort_by_numbers))
+    dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
 
     mybot.start_polling()
     mybot.idle()
