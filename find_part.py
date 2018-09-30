@@ -9,10 +9,8 @@ def find_part(bot, update):
     user_phrase = update.message.text
     user_phrase = user_phrase.upper()
     user_phrase = user_phrase.split(" ")
-    print(user_phrase)
     user_phrase = user_phrase[1:]
     user_phrase = ''.join(user_phrase)
-    print(user_phrase)
 
     for symbol in ruseng_letters:                   # проверяем, если первый символ — русская буква
         if user_phrase[0] == symbol:
