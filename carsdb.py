@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+#from sqlalchemy.pool import SingletonThreadPool
 
 engine = create_engine('sqlite:///cars.sqlite')
 
@@ -34,7 +35,7 @@ class Car(Base):
         self.comment = comment
 
     def __repr__(self):
-        return '<Car {} {} {}>'.format(self.car_model, self.licence_plate, self.car_owner)
+        return '{} Z4 {}, номер {}, владелец {}, номер телефона: {}'.format(self.color, self.car_model, self.licence_plate, self.car_owner, self.phone_number)
 
 if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)

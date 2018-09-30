@@ -7,3 +7,6 @@ attempt1.db
 sqlalchemy/
 attempt2.db
 settings.py
+find_part2.py
+bot.log
+RusEng_letters.py
