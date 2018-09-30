@@ -35,7 +35,7 @@ class Car(Base):
         self.comment = comment
 
     def __repr__(self):
-        return '{} Z4 {}, номер {}, владелец {}, номер телефона: {}'.format(self.color, self.car_model, self.licence_plate, self.car_owner, self.phone_number)
+        return '{} Z4 {}, номер {}, владелец {}, номер телефона: {}, фотография автомобиля {}, находится в чате: {}'.format(self.color, self.car_model, self.licence_plate, self.car_owner, self.phone_number, self.photo, self.in_the_chat)
 
 if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)

@@ -25,7 +25,7 @@ def find_part(bot, update):
     user_phrase = '%{}%'.format(user_phrase)
 
     data_upload = c.query.filter(c.licence_plate.like(user_phrase)).all()
-    if data_upload == []:                           # если фильтр из базы пустой список
+    if data_upload == []:                           # если фильтр из базы — пустой список
         reply = "Такого номера нет в базе"
         update.message.reply_text(reply)
     else:                                           # если есть совпадения
