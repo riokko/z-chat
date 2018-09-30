@@ -1,6 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from carsdb import Car, db_session
-from RusEng_letters import ruseng_letters
+from dict_ruseng_letters import ruseng_letters
 
 def find_part(bot, update):
       
@@ -30,5 +30,6 @@ def find_part(bot, update):
     else:                                           # если есть совпадения
         owner_phone = 'Владелец {}, номер телефона {}'.format(data_upload.car_owner, data_upload.phone_number)
         photo = '{}'.format(data_upload.photo)
+        number_model_color = '{} Z4 {} '
         update.message.reply_text(photo)
         update.message.reply_text(owner_phone)    
