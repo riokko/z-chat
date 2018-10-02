@@ -14,18 +14,16 @@ def plates (bot,update):
     user_phrase = user_phrase.strip().split(" ")
     user_phrase = user_phrase[-1]
 
+    
     if user_phrase:
-        u=c.query.filter(Car.licence_plate==user_phrase).all()
-        reply_plates = "Машина найдена!"
+        u=c.query.filter(Car.licence_plate==user_phrase).first()
+        reply_text = "Машина найдена!"
+    elif len(user_phrase) == 0:
+        print("Попробуйте напечатать номер автомобиля")
     else:
-        reply_plates = "Это точно номер автомобиля?"
+        reply_text = "Это точно номер автомобиля?"
 
-    #print(reply_plates)
-    #reply_text="Машина принадлежит {}".format(self.car_owner)
-    #update.message.reply_text(*)
+    reply_text="Машина принадлежит {}".format(u.car_owner)
+    print(reply_text)
+    update.message.reply_text(reply_text)
 
-
-#проверить что список непустой
-#взять первый автомобиль
-#и вместо селф будет u 
-#и текст откорректировать
