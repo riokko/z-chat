@@ -28,9 +28,12 @@ def find_part(bot, update):
             query_result.modelcode_link.model, query_result.car_modelcode,)
         owner_phone = 'Владелец {}, номер телефона {}'.format(query_result.car_owner, query_result.phone_number)
         photo = '{}'.format(query_result.photo)
+        update.message.reply_text(model_name)
+        update.message.reply_text(owner_phone)
         if photo:
             update.message.reply_text(photo)
-        update.message.reply_text(owner_phone)    
+          
+
 
     if query_result == None:                            # если фильтр из базы — пустой список
         reply_phrase = 'Такого номера нет в базе'
