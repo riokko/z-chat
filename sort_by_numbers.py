@@ -23,7 +23,7 @@ def plates (bot,update):
     else:
         reply_text = "Это точно номер автомобиля?"
 
-    reply_text="Машина принадлежит {}".format(u.car_owner)
+    reply_text="Владелец машины - {}".format(u.car_owner)
     print(reply_text)
     update.message.reply_text(reply_text)
 
