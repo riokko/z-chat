@@ -1,10 +1,9 @@
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
 from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 #from sqlalchemy.pool import SingletonThreadPool
 
-engine = create_engine('sqlite:///cars.sqlite')
+engine = create_engine('sqlite:///cars.db')
 
 db_session = scoped_session(sessionmaker(bind=engine))
 

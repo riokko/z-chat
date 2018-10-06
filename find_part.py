@@ -4,7 +4,7 @@ from telegram import ReplyKeyboardMarkup
 from carsdb import Car, Zmodels, db_session
 from dict_ruseng_letters import ruseng_letters # добавляем словарь кириллические символы - латинские символы
 
-def find_part(bot, update):
+def find_part(bot, update, user_data):
       
     c = Car
     z = Zmodels
@@ -43,8 +43,8 @@ def find_part(bot, update):
 # если одно совпадение, выводим информацию
     if number_of_car == 1:                          
         for car in query_result:                    
-            model_name = '{} {} {} ({})\n'.format(car.color, car.modelcode_link.body_style, 
-                car.modelcode_link.model, car.car_modelcode)
+            model_name = '{} {} {} ({}), ГРН {}\n'.format(car.color, car.modelcode_link.body_style, 
+                car.modelcode_link.model, car.car_modelcode, car.licence_plate)
             owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
             photo = '\n {}'.format(car.photo)
             update.message.reply_text(model_name)

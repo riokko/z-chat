@@ -1,0 +1,86 @@
+2018-10-06 15:21:15,090 - INFO - Received signal 2 (SIGINT), stopping...
+2018-10-06 15:21:19,222 - ERROR - Exception during reset or similar
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145365528576 and this is thread id 4556350912.
+2018-10-06 15:21:19,232 - ERROR - Exception closing connection <sqlite3.Connection object at 0x10562bc70>
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145365528576 and this is thread id 4556350912.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 314, in _close_connection
+    self._dialect.do_close(connection)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 465, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145365528576 and this is thread id 4556350912.
+2018-10-06 15:21:21,151 - INFO - Бот запускается
+2018-10-06 15:22:29,264 - INFO - Received signal 2 (SIGINT), stopping...
+2018-10-06 15:22:32,523 - ERROR - Exception during reset or similar
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145395863552 and this is thread id 4704204224.
+2018-10-06 15:22:32,526 - ERROR - Exception closing connection <sqlite3.Connection object at 0x10fdc2c70>
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145395863552 and this is thread id 4704204224.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 314, in _close_connection
+    self._dialect.do_close(connection)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 465, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145395863552 and this is thread id 4704204224.
+2018-10-06 15:22:39,999 - INFO - Бот запускается
+2018-10-06 15:23:22,509 - INFO - Received signal 2 (SIGINT), stopping...
+2018-10-06 15:23:23,092 - ERROR - Exception during reset or similar
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145406197760 and this is thread id 4496315840.
+2018-10-06 15:23:23,094 - ERROR - Exception closing connection <sqlite3.Connection object at 0x1094a7ab0>
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 709, in _finalize_fairy
+    fairy._reset(pool)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 880, in _reset
+    pool._dialect.do_rollback(self)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 459, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145406197760 and this is thread id 4496315840.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/pool.py", line 314, in _close_connection
+    self._dialect.do_close(connection)
+  File "/Users/riokko/Projects/Z-chat/env/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 465, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 123145406197760 and this is thread id 4496315840.
