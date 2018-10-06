@@ -26,9 +26,9 @@ def get_info (bot,update):
 
     if user_phrase:
         u=c.query.filter(Car.licence_plate==user_phrase).first()
-        reply_text = "Машина найдена!"
+        reply_text = "Такая машина уже есть"
     elif len(user_phrase) == 0:
-        print("Попробуйте напечатать номер автомобиля")
+        print("Введите, пожалуйста, новые данные")
     else:
         reply_text = "Это точно номер автомобиля?"
 
