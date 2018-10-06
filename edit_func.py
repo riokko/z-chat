@@ -1,5 +1,5 @@
-from telegram import ForceReply
 from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram import ReplyKeyboardMarkup
 
 from carsdb import Car, Zmodels, db_session
 from dict_ruseng_letters import ruseng_letters 
@@ -37,6 +37,13 @@ def make_right_number(bot, update, user_data):
             update.message.reply_text('Напишите новый номер телефона.')
 
             return CHANGE_NUMBER 
+    
+    if number_of_car > 1:                           
+        for car in query_result:
+            button_list = ReplyKeyboardMarkup([['/edit {}'.format(car.licence_plate)] for car in query_result], one_time_keyboard=True)
+            update.message.reply_text('Какой автомобиль?', reply_markup=button_list)
+            make_right_number()
+
     else:                                           
         update.message.reply_text('Такого номера нет в базе')
 
@@ -49,13 +56,15 @@ def change_phone_number(bot, update, user_data):
     number_of_car = 0
     for car in query_result:
         number_of_car += 1
-    
+
     if number_of_car == 1:                          
         for car in query_result:  
             car.phone_number = new_phone_number
             db_session.commit()
             new_phone_number_replytext = 'У {} новый контактный номер телефона: {}'.format(car.licence_plate, car.phone_number)
             update.message.reply_text(new_phone_number_replytext)
+
+            return ConversationHandler.END
 
 def cancel(bot, update, user_data):
     update.message.reply_text("Ну ок. Пиши если что.")
