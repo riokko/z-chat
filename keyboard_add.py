@@ -1,9 +1,9 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
+#from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
 #добавили RegexHandler, новый тип обработчика событий, основанный на регулярных выражениях
 #регулярные выражения = специальный синтаксис, разметка,позволяющая взять определенную часть строки
-from telegram import ReplyKeyboardMarkup
+#from telegram import ReplyKeyboardMarkup
 
-from carsdb import Car, Zmodels, db_session
+#from carsdb import Car, Zmodels, db_session
 
 
 def find_part(bot, update):
@@ -12,6 +12,7 @@ def find_part(bot, update):
     z = Zmodels
 
 #получаем данные пользователя и выкидываем лишнее
+'''
 def get_info (bot,update):
     test ="Вызван /add"
     print(test)
@@ -35,3 +36,4 @@ def get_info (bot,update):
     reply_text="Владелец машины - {}".format(u.car_owner)
     print(reply_text)
     update.message.reply_text(reply_text)
+'''
