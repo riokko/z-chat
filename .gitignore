@@ -8,5 +8,7 @@ sqlalchemy/
 attempt2.db
 settings.py
 find_part2.py
-bot.log
 RusEng_letters.py
+technical/
+bot.log
+edit_func2.py
