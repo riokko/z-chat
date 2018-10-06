@@ -4,6 +4,7 @@ import logging
 import settings
 import sort_by_numbers
 from find_part import find_part
+from keyboard_add import greeting_user 
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -18,6 +19,7 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("find", find_part))
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
+    dp.add_handler(CommandHandler("add", greeting_user))
 
     mybot.start_polling()
     mybot.idle()
