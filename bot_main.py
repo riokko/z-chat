@@ -24,7 +24,7 @@ def main():
     dp.add_handler(CommandHandler("find", find_part, pass_user_data=True))
     dp.add_handler(conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
-    dp.add_handler(CommandHandler("add", greeting_user))
+    dp.add_handler(CommandHandler("add", get_info)
 
     mybot.start_polling()
     mybot.idle()
