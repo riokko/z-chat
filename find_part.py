@@ -2,47 +2,32 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Regex
 from telegram import ReplyKeyboardMarkup
 
 from carsdb import Car, Zmodels, db_session
-from dict_ruseng_letters import ruseng_letters # добавляем словарь кириллические символы - латинские символы
+from make_right_number import make_right_number
 
 def find_part(bot, update, user_data):
       
     c = Car
     z = Zmodels
 
-# выделяем из фразы только запрос пользовтеля, исключаем пробелы, нижний регистр переводим в верхний    
-    user_phrase = update.message.text
-    user_phrase = user_phrase.upper().split(' ')[1:]
-    user_phrase = ''.join(user_phrase)
-
-# переводим введеный номер в формат БД (латинскими символами)
-    user_phrase_eng = ''
-    for symbol in user_phrase:
-        if symbol in ruseng_letters:
-            user_phrase_eng += ruseng_letters.get(symbol)
-        else:
-            user_phrase_eng += symbol
-
-# возвращаем текст для поиска в БД            
-    user_phrase = '%{}%'.format(user_phrase_eng)
-#осуществляем поиск по всей БД
-    query_result = c.query.filter(c.licence_plate.like(user_phrase)).all()
+    make_right_number(bot, update, user_data)
+    user_data['user_query_result'] = c.query.filter(c.licence_plate.like(user_data['user_car'])).all()
 
 # считаем количество совпадений
     number_of_car = 0
-    for car in c.query.filter(c.licence_plate.like(user_phrase)).all():
+    for car in user_data['user_query_result']:
         number_of_car += 1
     
 
 # если совпадений больше одного, добавляем клавиатуру для корректного ввода авто
     if number_of_car > 1:                           
-        for car in query_result:
+        for car in user_data['user_query_result']:
             button_list = ReplyKeyboardMarkup([['/find {}'.format(car.licence_plate)] for car in query_result], one_time_keyboard=True)
             update.message.reply_text('Какой автомобиль?', reply_markup=button_list)
             find_part()
 
 # если одно совпадение, выводим информацию
     if number_of_car == 1:                          
-        for car in query_result:                    
+        for car in user_data['user_query_result']:                    
             model_name = '{} {} {} ({}), ГРН {}\n'.format(car.color, car.modelcode_link.body_style, 
                 car.modelcode_link.model, car.car_modelcode, car.licence_plate)
             owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)

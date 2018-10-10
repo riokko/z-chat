@@ -7,7 +7,7 @@ import logging
 import settings
 import sort_by_numbers
 from find_part import find_part
-from edit_func import make_right_number, change_phone_number, conv_handler
+from edit_func import conv_handler
 #from keyboard_add import get_info
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
