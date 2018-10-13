@@ -3,7 +3,6 @@ from telegram import ReplyKeyboardMarkup
 
 from carsdb import Car, Zmodels, db_session
 from make_right_number import make_right_number
-import keyboard_add
 
 
 SELECTED, CHANGE_NUMBER, CHANGE_OWNER, CHANGE_COLOR, CHAT_PRESENCE, ADD = range(6)
@@ -135,7 +134,7 @@ def change_chat_presence(bot, update, user_data):
 def add_func(bot, update, user_data):
     add_new_car = update.message.text
     if add_new_car == 'Да':
-        keyboard_add(bot, update, user_data)
+        update.message.reply_text('Скоро научусь')
     if add_new_car == 'Нет':
         cancel(bot, update, user_data)
 
