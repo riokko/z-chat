@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler,ReplyKeyboardMarkup
 from datetime import datetime
 
 
@@ -24,6 +24,7 @@ def main():
     dp.add_handler(CommandHandler("find", find_part, pass_user_data=True))
     dp.add_handler(conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
+    dp.add_handler(RegexHandler("^(Добавить новую машину)$",try_keyboard, pass_user_data=True))
 #    dp.add_handler(CommandHandler("add", get_info)
 
     mybot.start_polling()
