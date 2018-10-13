@@ -1,21 +1,14 @@
-#from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler
 #добавили RegexHandler, новый тип обработчика событий, основанный на регулярных выражениях
 #регулярные выражения = специальный синтаксис, разметка,позволяющая взять определенную часть строки
-#from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup
 
-#from carsdb import Car, Zmodels, db_session
+from carsdb import Car, Zmodels, db_session
 
+ADD_INFO = range(1)
 
-def find_part(bot, update):
-      
-    c = Car
-    z = Zmodels
-
-#получаем данные пользователя и выкидываем лишнее
-'''
-def get_info (bot,update):
+def get_info (bot, update, user_data):
     test ="Вызван /add"
-    print(test)
     symbols=["-","=","_",".","/","&","?","*","#","~","$","^","(",")"]
     #получаем текст пользователя
     user_phrase=update.message.text
@@ -26,14 +19,24 @@ def get_info (bot,update):
     user_phrase = user_phrase[-1]
 
     if user_phrase:
-        u=c.query.filter(Car.licence_plate==user_phrase).first()
-        reply_text = "Такая машина уже есть"
+        f=c.query.filter(Car.licence_plate==user_phrase).first()
+        reply_text = "Такая машинка уже есть в нашей базе"
     elif len(user_phrase) == 0:
-        print("Введите, пожалуйста, новые данные")
+        print("Введите номер автомобиля, пожалуйста")
+            return ADD_INFO
     else:
-        reply_text = "Это точно номер автомобиля?"
+        reply_text = "Что-то я сомневаюсь, что бывают такие номера"
 
-    reply_text="Владелец машины - {}".format(u.car_owner)
-    print(reply_text)
-    update.message.reply_text(reply_text)
-'''
+
+def add_info (bot, update, user_data):
+    new_user = Car(car_data['licence_plate'])
+    db_session.add(new_user)
+    db_session.commit()
+    new_user_replytext = 'У нас пополнение, встречайте: {}'.format(car.licence_plate)
+            update.message.reply_text(new_user_replytext_replytext)
+
+            return ConversationHandler.END
+
+
+if __name__ == '__main__':
+    keyboard_add()
