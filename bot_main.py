@@ -1,4 +1,5 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler,ReplyKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram import ReplyKeyboardMarkup
 from datetime import datetime
 
 
@@ -6,6 +7,7 @@ import logging
 
 import settings
 import sort_by_numbers
+from keyboard_add import try_keyboard, add_info
 from find_part import find_part
 from edit_func import conv_handler
 #from keyboard_add import get_info
@@ -24,8 +26,7 @@ def main():
     dp.add_handler(CommandHandler("find", find_part, pass_user_data=True))
     dp.add_handler(conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
-    dp.add_handler(RegexHandler("^(Добавить новую машину)$",try_keyboard, pass_user_data=True))
-#    dp.add_handler(CommandHandler("add", get_info)
+    dp.add_handler(RegexHandler("^(Добавить новую машину)$",add_info, pass_user_data=True))
 
     mybot.start_polling()
     mybot.idle()
