@@ -135,8 +135,10 @@ def add_func(bot, update, user_data):
     add_new_car = update.message.text
     if add_new_car == 'Да':
         update.message.reply_text('Скоро научусь')
+        return ConversationHandler.END
     if add_new_car == 'Нет':
         cancel(bot, update, user_data)
+
 
 def cancel(bot, update, user_data):
     update.message.reply_text("Ну ок. Пиши если что.")

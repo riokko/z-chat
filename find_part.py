@@ -21,7 +21,7 @@ def find_part(bot, update, user_data):
 # если совпадений больше одного, добавляем клавиатуру для корректного ввода авто
     if number_of_car > 1:                           
         for car in user_data['user_query_result']:
-            button_list = ReplyKeyboardMarkup([['/find {}'.format(car.licence_plate)] for car in query_result], one_time_keyboard=True)
+            button_list = ReplyKeyboardMarkup([['/find {}'.format(car.licence_plate)] for car in user_data['user_query_result']], one_time_keyboard=True)
             update.message.reply_text('Какой автомобиль?', reply_markup=button_list)
             find_part()
 
@@ -36,6 +36,8 @@ def find_part(bot, update, user_data):
             update.message.reply_text(owner_phone)
             if photo:
                 update.message.reply_text(photo)
+
+        return True
 
 # если нет совпадений отвечаем фразой
     else:                                           
