@@ -8,7 +8,8 @@ import logging
 import settings
 import sort_by_numbers
 from find_part import find_part
-from edit_func import conv_handler
+from edit_func import edit_conv_handler
+from del_func import del_conv_handler
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -22,7 +23,8 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("find", find_part, pass_user_data=True))
-    dp.add_handler(conv_handler)
+    dp.add_handler(edit_conv_handler)
+    dp.add_handler(del_conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     #dp.add_handler(RegexHandler("^(Добавить новую машину)$",add_info, pass_user_data=True))
 

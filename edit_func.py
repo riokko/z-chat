@@ -4,9 +4,10 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from carsdb import Car, Zmodels, db_session
 from make_right_number import make_right_number
 
-
+# объявляем константы
 SELECTED, CHANGE_NUMBER, CHANGE_OWNER, CHANGE_COLOR, CHAT_PRESENCE, ADD = range(6)
 
+# кнопки для выбора 
 edition_button = ReplyKeyboardMarkup(
         [
         ['Номер телефона', 'Владельца'], 
@@ -18,6 +19,7 @@ button_list_yes_or_no = ReplyKeyboardMarkup(
         [['Да'], ['Нет']], 
         one_time_keyboard=True)
 
+
 def select_edition(bot, update, user_data):
     c = Car
     make_right_number(bot, update, user_data)
@@ -26,7 +28,7 @@ def select_edition(bot, update, user_data):
         update.message.reply_text('Нужно что-то ввести после /edit')
 
     else:
-        query_result = c.query.filter(c.licence_plate.like(user_data['user_car'])).all()
+        query_result = c.query.filter(c.licence_plate.like(user_data['user_car'])).filter(c.is_deleted == 0).all()
         user_data['user_query_result'] = query_result
 
         number_of_car = 0
@@ -58,6 +60,7 @@ def select_edition(bot, update, user_data):
             update.message.reply_text('Такого номера нет в базе. Хотите добавить?', reply_markup=button_list_yes_or_no)
             return ADD
 
+
 def selected_edition(bot, update, user_data):
         selection = update.message.text
 
@@ -87,6 +90,7 @@ def selected_edition(bot, update, user_data):
             user_data.clear()
             return ConversationHandler.END
 
+
 def change_phone_number(bot, update, user_data):
     new_phone_number = update.message.text
 
@@ -99,6 +103,7 @@ def change_phone_number(bot, update, user_data):
         'Хотите ещё что-нибудь поменять?'.format(new_phone_number_replytext), reply_markup=edition_button)
 
         return SELECTED
+
 
 def change_owner_name(bot, update, user_data):
     new_owner_name = update.message.text
@@ -113,6 +118,7 @@ def change_owner_name(bot, update, user_data):
 
         return SELECTED
 
+
 def change_car_color(bot, update, user_data):
     new_car_color = update.message.text
                        
@@ -125,6 +131,7 @@ def change_car_color(bot, update, user_data):
         'Хотите ещё что-нибудь поменять?'.format(new_car_color_replytext), reply_markup=edition_button)
 
         return SELECTED
+
 
 def change_chat_presence(bot, update, user_data):
     new_chat_presence = update.message.text
@@ -146,6 +153,7 @@ def change_chat_presence(bot, update, user_data):
         update.message.reply_text('{}\n\n'
             'Хотите ещё что-нибудь поменять?'.format(new_chat_presence_replytext), reply_markup=edition_button)
         return SELECTED
+
 
 def add_func(bot, update, user_data):
     add_new_car = update.message.text
@@ -169,7 +177,7 @@ def error(bot, update, error):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, error)
 
-conv_handler = ConversationHandler(
+edit_conv_handler = ConversationHandler(
     entry_points=[CommandHandler('edit', select_edition, pass_user_data=True)],
     states={
         SELECTED: [MessageHandler(Filters.text, selected_edition, pass_user_data=True)],
