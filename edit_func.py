@@ -118,14 +118,19 @@ def change_car_color(bot, update, user_data):
 
 def change_chat_presence(bot, update, user_data):
     new_chat_presence = update.message.text
-                       
+
+    if new_chat_presence == 'Да':
+        new_chat_presence = True
+    else: 
+        new_chat_presence = False
+
     for car in user_data['user_query_result']:  
         car.in_the_chat = new_chat_presence
         db_session.commit()
 
-        if car.in_the_chat == 'Да':
+        if car.in_the_chat == 1:
             new_chat_presence_replytext = 'Владелец {} теперь в чате'.format(car.licence_plate)
-        if car.in_the_chat == 'Нет':
+        if car.in_the_chat == 0:
             new_chat_presence_replytext = 'Владелец {} ушёл из чата'.format(car.licence_plate)
 
         update.message.reply_text('{} \n \nХотите ещё что-нибудь поменять?'.format(new_chat_presence_replytext), reply_markup=edition_button)

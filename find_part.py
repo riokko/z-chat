@@ -42,7 +42,7 @@ def find_part(bot, update, user_data):
 # если нет совпадений отвечаем фразой
     else:                                           
         update.message.reply_text('Такого номера нет в базе')
-
+        return True
 
 
 if __name__ == '__main__':

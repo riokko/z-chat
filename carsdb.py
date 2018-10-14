@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 #from sqlalchemy.pool import SingletonThreadPool
@@ -19,12 +19,13 @@ class Car(Base):
     car_modelcode = Column(String(5))
     color = Column(String(30))
     photo = Column(String(250))
-    in_the_chat = Column(String(3))
+    in_the_chat = Column(Boolean)
+    is_deleted = Column(Boolean)
     comment = Column(Text)
     modelcode_id = Column(Integer, ForeignKey('zmodels.id'))
 
     def __init__(self, licence_plate=None, car_owner=None, phone_number=None,
-        car_modelcode=None, color=None, photo=None, in_the_chat=None, comment=None, modelcode_id=None):
+        car_modelcode=None, color=None, photo=None, in_the_chat=None, is_deleted=None, comment=None, modelcode_id=None):
         self.licence_plate = licence_plate
         self.car_owner = car_owner
         self.phone_number = phone_number
@@ -32,6 +33,7 @@ class Car(Base):
         self.color = color
         self.photo = photo
         self.in_the_chat = in_the_chat
+        self.is_deleted = is_deleted
         self.comment = comment
         self.modelcode_id = modelcode_id
 
