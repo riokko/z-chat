@@ -28,7 +28,7 @@ def select_edition(bot, update, user_data):
         update.message.reply_text('Нужно что-то ввести после /edit')
 
     else:
-        query_result = c.query.filter(c.licence_plate.like(user_data['user_car'])).filter(c.is_deleted == 0).all()
+        query_result = c.query.filter(c.is_deleted == 0).filter(c.licence_plate.like(user_data['user_car'])).all()
         user_data['user_query_result'] = query_result
 
         number_of_car = 0

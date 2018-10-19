@@ -10,7 +10,7 @@ def find_part(bot, update, user_data):
     z = Zmodels
 
     make_right_number(bot, update, user_data)
-    user_data['user_query_result'] = c.query.filter(c.licence_plate.like(user_data['user_car'])).filter(c.is_deleted == 0).all()
+    user_data['user_query_result'] = c.query.filter(c.is_deleted == 0).filter(c.licence_plate.like(user_data['user_car'])).all()
 
 # считаем количество совпадений
     number_of_car = 0
