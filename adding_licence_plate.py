@@ -2,6 +2,7 @@ from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHa
 from telegram import ReplyKeyboardMarkup
 from carsdb import Car, Zmodels, db_session
 from make_right_number import make_right_number
+from dict_ruseng_letters import ruseng_letters 
 
 SELECTED, ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS = range(10)
 
@@ -19,10 +20,9 @@ def make_them_type (bot, update):
 def adding_keyboard(bot,update,user_data):
     c=Car
     edition_button = ReplyKeyboardMarkup(
-        [['Номер машины']],
+        [['Добавить нового автовладельца']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить данные информацию по новому автомобилю')
-    update.message.reply_text('Внесите первые данные:', reply_markup=edition_button)
+    update.message.reply_text('Внесите регистрационный номер автомобиля:', reply_markup=edition_button)
 
     return SELECTED
 
@@ -39,13 +39,31 @@ def add_licence_plate(bot, update, user_data):
     user_phrase=update.message.text 
     new_car = Car()
     new_car.licence_plate = user_phrase
+
+# выделяем из фразы только запрос пользователя, исключаем пробелы, нижний регистр переводим в верхний  
+    user_phrase = user_phrase.upper().split(' ')[1:]
+    user_phrase = ''.join(user_phrase)
+
+# переводим введеный номер в формат БД (латинскими символами)
+    user_phrase_eng = ''
+    for symbol in user_phrase:
+        if symbol in ruseng_letters:
+            user_phrase_eng += ruseng_letters.get(symbol)
+        else:
+            user_phrase_eng += symbol
+# возвращаем текст для поиска в БД  
+    user_phrase = '%{}%'.format(user_phrase_eng)
+
+# добавляем фразу в кэш user_data
+    user_data['user_car'] = user_phrase
+
     db_session.add(new_car)
     db_session.commit()
     new_licence_plate_replytext = 'В базе появился новый регистрационный номер: {}'.format(new_car.licence_plate)
     edition_button = ReplyKeyboardMarkup(
         [['Владелец','Номер телефона'], 
-        ['Модель автомобиля', 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Модель автомобиля', 'Цвет', 'Фото','ID'],
+        ['Присутствие в чате','Комментарий']],
         one_time_keyboard=True)
     update.message.reply_text('Вы хотите дополнить данные по автомобилю ?')
     update.message.reply_text(new_licence_plate_replytext,reply_markup=edition_button)
@@ -92,7 +110,6 @@ def selecting_new_data (bot,update,user_data):
             return ADD_COMMENT
 
 
-
 def add_owner (bot, update, user_data):
     
     car=Car.query.filter(Car.licence_plate==user_data["licence_plate"]).first()
@@ -103,8 +120,8 @@ def add_owner (bot, update, user_data):
     new_owner_replytext = 'В базу внесен новый владелец: {}'.format(car.car_owner)
     edition_button = ReplyKeyboardMarkup(
         [['Номер телефона','Модель автомобиля'], 
-        [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        [ 'Цвет', 'Фото','ID'],
+        ['Присутствие в чате','Комментарий']],
         one_time_keyboard=True)
     update.message.reply_text('Вы хотите добавить другие данные?')
     update.message.reply_text(new_owner_replytext, reply_markup=edition_button)
