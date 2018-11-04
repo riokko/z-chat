@@ -29,7 +29,7 @@ def adding_keyboard(bot,update,user_data):
 def selected_addition(bot, update,user_data):
         selection = update.message.text
 
-        if selection == "Номер машины":                  
+        if selection == "Регистрационный номер нового автомобиля":                  
             update.message.reply_text("Введите номер автомобиля:")
 
             return ADD_NUMBER

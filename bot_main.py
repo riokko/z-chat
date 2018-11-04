@@ -36,9 +36,12 @@ def main():
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     dp.add_handler(CommandHandler("help", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("start", help_func, pass_user_data=True))
+<<<<<<< HEAD
     dp.add_handler(CallbackQueryHandler(press_button, pass_user_data=True))
 
     #dp.add_handler(RegexHandler("^(Добавить новую машину)$",add_info, pass_user_data=True))
+=======
+>>>>>>> 962ace5ad458ed5d7508dec79ab11f56e7f324eb
 
     mybot.start_polling()
     mybot.idle()
