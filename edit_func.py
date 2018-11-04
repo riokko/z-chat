@@ -39,10 +39,9 @@ def select_edition(bot, update, user_data):
             model_name = '{} {} {} ({}), ГРН {}'.format(car.color, car.modelcode_link.body_style, 
                     car.modelcode_link.model, car.car_modelcode, car.licence_plate)
             owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
-            update.message.reply_text('Вы хотите отредактировать информацию по автомобилю:'
-                    '\n\n{} \n{}\n\n'
-                    'Что нужно поменять?'.format(model_name, 
-                owner_phone), reply_markup=edition_button )
+            update.message.reply_text("""Вы хотите отредактировать информацию по автомобилю:
+\n\n{} \n{}\n\n
+Что нужно поменять?""".format(model_name, owner_phone), reply_markup=edition_button )
 
             return SELECTED
 
@@ -57,7 +56,8 @@ def select_edition(bot, update, user_data):
 
         else:                                           
             
-            update.message.reply_text('Такого номера нет в базе. Хотите добавить?', reply_markup=button_list_yes_or_no)
+            update.message.reply_text('Такого номера нет в базе. Хотите добавить?', 
+                reply_markup=button_list_yes_or_no)
             return ADD
 
 
@@ -80,13 +80,14 @@ def selected_edition(bot, update, user_data):
             return CHANGE_COLOR
 
         if selection == 'Присутсвие в чате':
-            update.message.reply_text('Владелец автомобиля в чате?', reply_markup=button_list_yes_or_no)
+            update.message.reply_text('Владелец автомобиля в чате?', 
+                reply_markup=button_list_yes_or_no)
 
             return CHAT_PRESENCE
 
         if selection == 'Не надо ничего менять':
             update.message.reply_text('Ну ок. Пишите если что.', 
-                                reply_markup=ReplyKeyboardRemove())
+                reply_markup=ReplyKeyboardRemove())
             user_data.clear()
             return ConversationHandler.END
 
@@ -97,10 +98,11 @@ def change_phone_number(bot, update, user_data):
     for car in user_data['user_query_result']:  
         car.phone_number = new_phone_number
         db_session.commit()
-        new_phone_number_replytext = 'У {} изменён номер телефона.'
-        'Теперь нужно звонить по {}'.format(car.licence_plate, car.phone_number)
-        update.message.reply_text('{}\n\n'
-        'Хотите ещё что-нибудь поменять?'.format(new_phone_number_replytext), reply_markup=edition_button)
+        new_phone_number_replytext = """У {} изменён номер телефона.
+Теперь нужно звонить по {}""".format(car.licence_plate, car.phone_number)
+        update.message.reply_text("""{}\n\n
+Хотите ещё что-нибудь поменять?""".format(new_phone_number_replytext), 
+            reply_markup=edition_button)
 
         return SELECTED
 
@@ -111,10 +113,11 @@ def change_owner_name(bot, update, user_data):
     for car in user_data['user_query_result']:  
         car.car_owner = new_owner_name
         db_session.commit()
-        new_owner_name_replytext = 'У {} изменено имя владельца.'
-        'Теперь владелец автомобиля {}'.format(car.licence_plate, car.car_owner)
-        update.message.reply_text('{}\n\n'
-        'Хотите ещё что-нибудь поменять?'.format(new_owner_name_replytext), reply_markup=edition_button)
+        new_owner_name_replytext = """У {} изменено имя владельца.
+Теперь владелец автомобиля {}""".format(car.licence_plate, car.car_owner)
+        update.message.reply_text("""{}\n\n
+Хотите ещё что-нибудь поменять?""".format(new_owner_name_replytext), 
+            reply_markup=edition_button)
 
         return SELECTED
 
@@ -125,10 +128,11 @@ def change_car_color(bot, update, user_data):
     for car in user_data['user_query_result']:  
         car.color = new_car_color
         db_session.commit()
-        new_car_color_replytext = 'У {} изменен цвет автомобиля.'
-        'Новый цвет автомобиля — {}'.format(car.licence_plate, car.color)
-        update.message.reply_text('{}\n\n'
-        'Хотите ещё что-нибудь поменять?'.format(new_car_color_replytext), reply_markup=edition_button)
+        new_car_color_replytext = """У {} изменен цвет автомобиля.
+Новый цвет автомобиля — {}.""".format(car.licence_plate, car.color)
+        update.message.reply_text("""{}\n\n
+Хотите ещё что-нибудь поменять?""".format(new_car_color_replytext), 
+            reply_markup=edition_button)
 
         return SELECTED
 
@@ -151,7 +155,8 @@ def change_chat_presence(bot, update, user_data):
             new_chat_presence_replytext = 'Владелец {} ушёл из чата'.format(car.licence_plate)
 
         update.message.reply_text('{}\n\n'
-            'Хотите ещё что-нибудь поменять?'.format(new_chat_presence_replytext), reply_markup=edition_button)
+            'Хотите ещё что-нибудь поменять?'.format(new_chat_presence_replytext), 
+            reply_markup=edition_button)
         return SELECTED
 
 

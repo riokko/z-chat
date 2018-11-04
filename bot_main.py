@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, RegexHandler, CallbackQueryHandler
 from telegram import ReplyKeyboardMarkup
 from telegram.ext.dispatcher import run_async
 from datetime import datetime
@@ -13,6 +13,7 @@ from edit_func import edit_conv_handler
 from del_func import del_conv_handler
 from help_start import help_func, start_func
 from adding_licence_plate import adding_licence_handler
+from authorisation import press_button
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -29,13 +30,14 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("find", find_part, pass_user_data=True))
-    #dp.add_handler(conv_handler)
     dp.add_handler(edit_conv_handler)
     dp.add_handler(del_conv_handler)
     dp.add_handler(adding_licence_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     dp.add_handler(CommandHandler("help", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("start", help_func, pass_user_data=True))
+    dp.add_handler(CallbackQueryHandler(press_button, pass_user_data=True))
+
     #dp.add_handler(RegexHandler("^(Добавить новую машину)$",add_info, pass_user_data=True))
 
     mybot.start_polling()

@@ -8,19 +8,21 @@ from dict_ruseng_letters import ruseng_letters
 номер ГРН так, как написано в базе данных
 '''
 
-def make_right_number(bot, update, user_data):
-      
+def make_right_number(bot, update, user_data): 
     c = Car
     z = Zmodels
 # выделяем из фразы только запрос пользователя, исключаем пробелы, нижний регистр переводим в верхний    
-    user_phrase = update.message.text
-    user_phrase = user_phrase.upper().split(' ')[1:]
-    user_phrase = ''.join(user_phrase)
+
+    user_data['user_car'] = update.message.text
+    user_data['user_car'] = user_data['user_car'].upper().split(' ')[1:]
+    user_data['user_car'] = ''.join(user_data['user_car'])
+    user_data['user'] = update.message.from_user
+    user_data['chat_id'] = update.message.chat_id
 
 
 # переводим введеный номер в формат БД (латинскими символами)
     user_phrase_eng = ''
-    for symbol in user_phrase:
+    for symbol in user_data['user_car']:
         if symbol in ruseng_letters:
             user_phrase_eng += ruseng_letters.get(symbol)
         else:

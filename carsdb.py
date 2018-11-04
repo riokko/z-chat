@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-#from sqlalchemy.pool import SingletonThreadPool
 
 engine = create_engine('sqlite:///cars.db')
 
@@ -55,6 +54,20 @@ class Zmodels(Base):
 
     def __repr__(self):
         return '{} {} ({})'.format(self.body_style, self.model, self.modelcode)
+
+class Admin(Base):
+    __tablename__ = 'admins'
+    id = Column(Integer, primary_key=True)
+    admin_name = Column(String(20))
+    tg_id = Column(Integer)
+    is_active = Column(Boolean)
+
+    def __init__(self, admin_name=None, tg_id=None, is_active=None):
+        self.admin_name = admin_name
+        self.tg_id = tg_id
+        self.is_active = is_active
+    def __repr__(self):
+        return 'Имя админа: {}, его id в Телеграме: {}'.format(self.admin_name, self.tg_id)
 
 
 if __name__ == '__main__':
