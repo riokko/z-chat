@@ -3,7 +3,7 @@ from telegram.ext import (Updater, ConversationHandler, CommandHandler, MessageH
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 from carsdb import Car, Zmodels, db_session
-from make_right_number import make_right_number
+from car_make_right_number import make_right_number
 
 # объявляем константы
 SELECTED, CHANGE_NUMBER, CHANGE_OWNER, CHANGE_COLOR, CHAT_PRESENCE, ADD = range(6)
@@ -14,11 +14,11 @@ edition_button = ReplyKeyboardMarkup(
         ['Номер телефона', 'Владельца'], 
         ['Цвет автомобиля', 'Присутсвие в чате'],
         ['Не надо ничего менять']
-        ], one_time_keyboard=True)
+        ], one_time_keyboard=True, resize_keyboard=True)
 
 button_list_yes_or_no = ReplyKeyboardMarkup(
         [['Да'], ['Нет']], 
-        one_time_keyboard=True)
+        one_time_keyboard=True, resize_keyboard=True)
 
 
 def select_edition(bot, update, user_data):
@@ -42,7 +42,8 @@ def select_edition(bot, update, user_data):
             owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
             update.message.reply_text("""Вы хотите отредактировать информацию по автомобилю:
 \n\n{} \n{}\n\n
-Что нужно поменять?""".format(model_name, owner_phone), reply_markup=edition_button )
+Что нужно поменять?""".format(model_name, owner_phone), 
+                reply_markup=edition_button, resize_keyboard=True)
 
             return SELECTED
 
@@ -50,8 +51,8 @@ def select_edition(bot, update, user_data):
             for car in user_data['user_query_result']:
                 car_list = ReplyKeyboardMarkup(
                     [['/edit {}'.format(car.licence_plate)] 
-                    for car in user_data['user_query_result']], one_time_keyboard=True
-                    )
+                    for car in user_data['user_query_result']], 
+                    one_time_keyboard=True, resize_keyboard=True)
             update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
             make_right_number(bot, update, user_data)
 
@@ -174,7 +175,7 @@ def add_func(bot, update, user_data):
 
 def cancel(bot, update, user_data):
     update.message.reply_text('Ну ок. Пишите если что.', 
-                                reply_markup=ReplyKeyboardRemove())
+        reply_markup=ReplyKeyboardRemove())
     user_data.clear()
     return ConversationHandler.END
 

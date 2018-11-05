@@ -8,12 +8,13 @@ import logging
 
 import settings
 import sort_by_numbers
-from find_part import find_part
-from edit_func import edit_conv_handler
-from del_func import del_conv_handler
+from car_find import find_part
+from car_edit import edit_conv_handler
+from car_del import del_conv_handler
 from help_start import help_func, start_func
 from adding_licence_plate import adding_licence_handler
-from add_del_admin import add_admin_conv_handler
+from admin_add import add_admin_conv_handler
+from admin_del import del_admin_conv_handler
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -34,6 +35,7 @@ def main():
     dp.add_handler(del_conv_handler)
     dp.add_handler(adding_licence_handler)
     dp.add_handler(add_admin_conv_handler)
+    dp.add_handler(del_admin_conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     dp.add_handler(CommandHandler("help", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("start", help_func, pass_user_data=True))

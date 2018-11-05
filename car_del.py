@@ -1,15 +1,16 @@
-from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram.ext import (Updater, ConversationHandler, CommandHandler, 
+    MessageHandler, Filters, RegexHandler)
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
-from carsdb import Car, Zmodels, db_session
-from make_right_number import make_right_number
+from carsdb import Car, db_session
+from car_make_right_number import make_right_number
 
 
 delete_buttons = ReplyKeyboardMarkup(
         [['Удалить'], ['Не надо ничего удалять']], 
-        one_time_keyboard=True)
+        one_time_keyboard=True, resize_keyboard=True)
 
-DELETE = range(1)
+DELETE_CAR = range(1)
 
 def select_delete(bot, update, user_data):
     c = Car
@@ -35,14 +36,13 @@ def select_delete(bot, update, user_data):
                     'Подтвердите свой выбор'.format(model_name, owner_phone), 
                     reply_markup=delete_buttons)
 
-            return DELETE
+            return DELETE_CAR
 
         if number_of_car > 1:                           
             for car in user_data['user_query_result']:
                 car_list = ReplyKeyboardMarkup(
-                    [['/del {}'.format(car.licence_plate)] 
-                    for car in user_data['user_query_result']], one_time_keyboard=True
-                    )
+                    [['/del {}'.format(car.licence_plate)] for car in user_data['user_query_result']], 
+                    one_time_keyboard=True, resize_keyboard=True)
             update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
 
         if number_of_car == 0:                                           
@@ -57,7 +57,7 @@ def delete_func(bot, update, user_data):
             car.is_deleted = True
             db_session.commit()
             delete_replytext = 'Информация об автомобиле {} удалена из базы'.format(car.licence_plate)
-            update.message.reply_text(delete_replytext)
+            update.message.reply_text(delete_replytext, reply_markup=ReplyKeyboardRemove())
 
             user_data.clear()
             return ConversationHandler.END
@@ -65,7 +65,7 @@ def delete_func(bot, update, user_data):
     if user_choice == 'Не надо ничего удалять':
         for car in user_data['user_query_result']: 
             not_delete_replytext = 'Информация об автомобиле {} оставлена в базе'.format(car.licence_plate)
-            update.message.reply_text(not_delete_replytext)
+            update.message.reply_text(not_delete_replytext, reply_markup=ReplyKeyboardRemove())
         
             user_data.clear()
             return ConversationHandler.END
@@ -79,7 +79,7 @@ def cancel(bot, update, user_data):
 del_conv_handler = ConversationHandler(
     entry_points=[CommandHandler('del', select_delete, pass_user_data=True)],
     states={
-        DELETE: [MessageHandler(Filters.text, delete_func, pass_user_data=True)]
+        DELETE_CAR: [MessageHandler(Filters.text, delete_func, pass_user_data=True)]
     },
     fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True)]
     )
