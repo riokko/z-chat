@@ -1,4 +1,5 @@
-from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters, RegexHandler
+from telegram.ext import (Updater, ConversationHandler, CommandHandler, MessageHandler, 
+    Filters, RegexHandler)
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 from carsdb import Car, Zmodels, db_session
@@ -176,11 +177,6 @@ def cancel(bot, update, user_data):
                                 reply_markup=ReplyKeyboardRemove())
     user_data.clear()
     return ConversationHandler.END
-
-
-def error(bot, update, error):
-    """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, error)
 
 edit_conv_handler = ConversationHandler(
     entry_points=[CommandHandler('edit', select_edition, pass_user_data=True)],

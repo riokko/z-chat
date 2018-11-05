@@ -32,24 +32,23 @@ def select_delete(bot, update, user_data):
             owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
             update.message.reply_text('Вы хотите удалить информацию об автомобиле:'
                     '\n\n{} \n{}\n\n'
-                    'Подтвердите свой выбор'.format(model_name, 
-                owner_phone), reply_markup=delete_buttons)
+                    'Подтвердите свой выбор'.format(model_name, owner_phone), 
+                    reply_markup=delete_buttons)
 
             return DELETE
 
         if number_of_car > 1:                           
             for car in user_data['user_query_result']:
                 car_list = ReplyKeyboardMarkup(
-                    [['/edit {}'.format(car.licence_plate)] 
+                    [['/del {}'.format(car.licence_plate)] 
                     for car in user_data['user_query_result']], one_time_keyboard=True
                     )
             update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
-            make_right_number(bot, update, user_data)
 
-        else:                                           
+        if number_of_car == 0:                                           
             
             update.message.reply_text('Такого номера нет в базе')
-            return 0
+            return ConversationHandler.END
 
 def delete_func(bot, update, user_data):
     user_choice = update.message.text
@@ -73,7 +72,7 @@ def delete_func(bot, update, user_data):
 
 def cancel(bot, update, user_data):
     update.message.reply_text('Ну ок. Пишите если что.', 
-                                reply_markup=ReplyKeyboardRemove())
+        reply_markup=ReplyKeyboardRemove())
     user_data.clear()
     return ConversationHandler.END
 

@@ -13,7 +13,7 @@ from edit_func import edit_conv_handler
 from del_func import del_conv_handler
 from help_start import help_func, start_func
 from adding_licence_plate import adding_licence_handler
-from authorisation import press_button
+from add_del_admin import add_admin_conv_handler
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -33,15 +33,12 @@ def main():
     dp.add_handler(edit_conv_handler)
     dp.add_handler(del_conv_handler)
     dp.add_handler(adding_licence_handler)
+    dp.add_handler(add_admin_conv_handler)
     dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     dp.add_handler(CommandHandler("help", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("start", help_func, pass_user_data=True))
-<<<<<<< HEAD
-    dp.add_handler(CallbackQueryHandler(press_button, pass_user_data=True))
 
     #dp.add_handler(RegexHandler("^(Добавить новую машину)$",add_info, pass_user_data=True))
-=======
->>>>>>> 962ace5ad458ed5d7508dec79ab11f56e7f324eb
 
     mybot.start_polling()
     mybot.idle()

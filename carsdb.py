@@ -58,16 +58,16 @@ class Zmodels(Base):
 class Admin(Base):
     __tablename__ = 'admins'
     id = Column(Integer, primary_key=True)
-    admin_name = Column(String(20))
     tg_id = Column(Integer)
+    admin_comment = Column(String(50))
     is_active = Column(Boolean)
 
-    def __init__(self, admin_name=None, tg_id=None, is_active=None):
-        self.admin_name = admin_name
+    def __init__(self, tg_id=None, admin_comment=None, is_active=None):
         self.tg_id = tg_id
+        self.admin_comment = admin_comment
         self.is_active = is_active
     def __repr__(self):
-        return 'Имя админа: {}, его id в Телеграме: {}'.format(self.admin_name, self.tg_id)
+        return 'ID админа в Телеграме: {}, комментарий: {}'.format(self.tg_id, self.admin_comment)
 
 
 if __name__ == '__main__':
