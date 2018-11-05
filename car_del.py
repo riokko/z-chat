@@ -2,7 +2,7 @@ from telegram.ext import (Updater, ConversationHandler, CommandHandler,
     MessageHandler, Filters, RegexHandler)
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
-from carsdb import Car, db_session
+from carsdb import Car, Admin, db_session
 from car_make_right_number import make_right_number
 
 
@@ -16,39 +16,50 @@ def select_delete(bot, update, user_data):
     c = Car
     make_right_number(bot, update, user_data)
 
-    if user_data['user_car'] == '%%':
-        update.message.reply_text('Нужно что-то ввести после /del')
+    admin_query = Admin.query.filter(Admin.tg_id == user_data['chat_id']).all()
+    if admin_query == []:
+        text_to_non_admin = """У вас нет прав для редактирования. Запросите у администратора группы права.
+\nДля этого вам понадобится ваш ID в Телеграме. Вот он: {}.""".format(user_data['chat_id'])
+        update.message.reply_text(text_to_non_admin)
 
-    else:
-        query_result = c.query.filter(c.is_deleted == 0).filter(c.licence_plate.like(user_data['user_car'])).all()
-        user_data['user_query_result'] = query_result
+        return ConversationHandler.END
 
-        number_of_car = 0
-        for car in user_data['user_query_result']:
-            number_of_car += 1
+    else:   
 
-        if number_of_car == 1:
-            model_name = '{} {} {} ({}), ГРН {}'.format(car.color, car.modelcode_link.body_style, 
-                    car.modelcode_link.model, car.car_modelcode, car.licence_plate)
-            owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
-            update.message.reply_text('Вы хотите удалить информацию об автомобиле:'
-                    '\n\n{} \n{}\n\n'
-                    'Подтвердите свой выбор'.format(model_name, owner_phone), 
-                    reply_markup=delete_buttons)
+        if user_data['user_car'] == '%%':
+            update.message.reply_text('Нужно что-то ввести после /del')
 
-            return DELETE_CAR
+        else:
+            query_result = c.query.filter(c.is_deleted == 0).filter(c.licence_plate.like(user_data['user_car'])).all()
+            user_data['user_query_result'] = query_result
 
-        if number_of_car > 1:                           
+            number_of_car = 0
             for car in user_data['user_query_result']:
-                car_list = ReplyKeyboardMarkup(
-                    [['/del {}'.format(car.licence_plate)] for car in user_data['user_query_result']], 
-                    one_time_keyboard=True, resize_keyboard=True)
-            update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
+                number_of_car += 1
 
-        if number_of_car == 0:                                           
-            
-            update.message.reply_text('Такого номера нет в базе')
-            return ConversationHandler.END
+            if number_of_car == 1:
+                model_name = '{} {} {} ({}), ГРН {}'.format(car.color, car.modelcode_link.body_style, 
+                        car.modelcode_link.model, car.car_modelcode, car.licence_plate)
+                owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
+                update.message.reply_text('Вы хотите удалить информацию об автомобиле:'
+                        '\n\n{} \n{}\n\n'
+                        'Подтвердите свой выбор'.format(model_name, owner_phone), 
+                        reply_markup=delete_buttons)
+
+                return DELETE_CAR
+
+            if number_of_car > 1:                           
+                for car in user_data['user_query_result']:
+                    car_list = ReplyKeyboardMarkup(
+                        [['/del {}'.format(car.licence_plate)] for car in user_data['user_query_result']], 
+                        one_time_keyboard=True, resize_keyboard=True)
+                update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
+
+            if number_of_car == 0:                                           
+                
+                update.message.reply_text('Такого номера нет в базе')
+                return ConversationHandler.END
+
 
 def delete_func(bot, update, user_data):
     user_choice = update.message.text
