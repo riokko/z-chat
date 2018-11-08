@@ -67,7 +67,7 @@ def select_edition(bot, update, user_data):
 
             else:                                           
                 
-                update.message.reply_text('Такого номера нет в базе. Хотите добавить?', 
+                update.message.reply_text('Такого номера нет в базе. Если хотите добавить, используйте команду /add', 
                     reply_markup=button_list_yes_or_no)
                 return ADD
 

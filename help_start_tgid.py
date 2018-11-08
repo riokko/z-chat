@@ -10,7 +10,8 @@ def help_func(bot, update, user_data):
     if admin_query == []:
         help_reply = """Я умею искать информацию об автомобиле.
 
-Для этого используйте команду «/find номер_автомобиля.»"""
+Для этого используйте команду «/find номер_автомобиля.»
+Ещё вы можете узнать, свой ID Телеграма — /myid."""
 
     else:
         help_reply = """Привет, админ!
@@ -26,7 +27,9 @@ def help_func(bot, update, user_data):
 А ещё я могу управлять списком админов, кто может добавлять, удалять и редактировать информацию. 
 Для этого воспользуйтесь командами: 
 /addadmin ID_Телеграма
-/deladmin ID_Телеграма
+/deladmin 
+
+Список всех админов выводится по команде: /adminlist
 
 Чтобы узнать номер ID Телеграма, есть команда /myid."""
     update.message.reply_text(help_reply)
@@ -34,3 +37,12 @@ def help_func(bot, update, user_data):
 def tg_id_func(bot, update, user_data):
     tg_id = update.message.chat_id
     update.message.reply_text("Ваш Телеграм ID — %s." % tg_id)
+
+def admin_list_func(bot, update):
+    admin_query = Admin.query.filter(Admin.is_active == 1).all()
+    adminlist_text = ""
+
+    for admin in admin_query:
+        tgid_text = 'ID Телеграма: {}, комментарий: {}\n'.format(admin.tg_id, admin.admin_comment)
+        adminlist_text += tgid_text
+    update.message.reply_text(adminlist_text)
