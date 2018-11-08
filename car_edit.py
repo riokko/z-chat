@@ -2,7 +2,7 @@ from telegram.ext import (Updater, ConversationHandler, CommandHandler, MessageH
     Filters, RegexHandler)
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
-from carsdb import Car, Zmodels, db_session
+from carsdb import Car, Admin, Zmodels, db_session
 from car_make_right_number import make_right_number
 
 # объявляем константы
@@ -50,8 +50,8 @@ def select_edition(bot, update, user_data):
                         car.modelcode_link.model, car.car_modelcode, car.licence_plate)
                 owner_phone = 'Владелец {}, номер телефона {}'.format(car.car_owner, car.phone_number)
                 update.message.reply_text("""Вы хотите отредактировать информацию по автомобилю:
-    \n\n{} \n{}\n\n
-    Что нужно поменять?""".format(model_name, owner_phone), 
+\n\n{} \n{}\n\n
+Что нужно поменять?""".format(model_name, owner_phone), 
                     reply_markup=edition_button, resize_keyboard=True)
 
                 return SELECTED

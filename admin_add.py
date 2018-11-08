@@ -6,24 +6,34 @@ from carsdb import Admin, db_session
 ADMIN_NAME = range(1)
 
 def add_admin(bot, update, args, user_data):
-    new_admin_tgid = int(args[0])
-    user_data['new_admin_tgid'] = new_admin_tgid
-    admin_query = Admin.query.filter(Admin.tg_id.like(new_admin_tgid)).all()
+    user_data['chat_id'] = update.message.chat_id
+    admin_query_tg_id = Admin.query.filter(Admin.tg_id == user_data['chat_id']).all()
+    if admin_query_tg_id == []:
+        text_to_non_admin = """У вас нет прав для редактирования. Запросите у администратора группы права.
+\nДля этого вам понадобится ваш ID в Телеграме. Вот он: {}.""".format(user_data['chat_id'])
+        update.message.reply_text(text_to_non_admin)
 
-    if admin_query == []:
-        new_admin = Admin()
-        new_admin.tg_id = new_admin_tgid
-        new_admin.is_active = 1
-        db_session.add(new_admin)
-        db_session.commit()
+        return ConversationHandler.END
 
-    else:
-        for admin in admin_query:
-            admin.is_active = 1
+    else:   
+        new_admin_tgid = int(args[0])
+        user_data['new_admin_tgid'] = new_admin_tgid
+        admin_query = Admin.query.filter(Admin.tg_id.like(new_admin_tgid)).all()
+
+        if admin_query == []:
+            new_admin = Admin()
+            new_admin.tg_id = new_admin_tgid
+            new_admin.is_active = 1
+            db_session.add(new_admin)
             db_session.commit()
-    
-    added_admin_text = "Добавил админа в базу. Добавьте комментарий к админу."
-    update.message.reply_text(added_admin_text)
+
+        else:
+            for admin in admin_query:
+                admin.is_active = 1
+                db_session.commit()
+        
+        added_admin_text = "Добавил админа в базу. Добавьте комментарий к админу."
+        update.message.reply_text(added_admin_text)
 
     return ADMIN_NAME
 
