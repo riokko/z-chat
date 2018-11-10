@@ -3,7 +3,7 @@ from telegram import ReplyKeyboardMarkup
 from carsdb import Car, Zmodels, db_session
 from make_right_number import make_right_number
 
-SELECTED, ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS = range(10)
+ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS, EXIT = range(10)
 
 def make_them_type (bot, update):
     test ="Вызван /add"
@@ -19,20 +19,11 @@ def make_them_type (bot, update):
 def adding_keyboard(bot,update,user_data):
     c=Car
     edition_button = ReplyKeyboardMarkup(
-        [['Номер машины']],
+        [['Пожалуйста, введи выше регистрационный номер']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить данные информацию по новому автомобилю')
-    update.message.reply_text('Внесите первые данные:', reply_markup=edition_button)
+    update.message.reply_text('Внесите номер автомобиля:', reply_markup=edition_button)
 
-    return SELECTED
-
-def selected_addition(bot, update,user_data):
-        selection = update.message.text
-
-        if selection == "Регистрационный номер нового автомобиля":                  
-            update.message.reply_text("Введите номер автомобиля:")
-
-            return ADD_NUMBER
+    return ADD_NUMBER
 
 def add_licence_plate(bot, update, user_data):
     
@@ -45,10 +36,10 @@ def add_licence_plate(bot, update, user_data):
     edition_button = ReplyKeyboardMarkup(
         [['Владелец','Номер телефона'], 
         ['Модель автомобиля', 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите дополнить данные по автомобилю ?')
     update.message.reply_text(new_licence_plate_replytext,reply_markup=edition_button)
+    update.message.reply_text('Вы хотите дополнить данные по автомобилю ?')
     user_data["licence_plate"] = new_car.licence_plate
 
     return KEY_OPTIONS
@@ -61,12 +52,12 @@ def selecting_new_data (bot,update,user_data):
 
             return ADD_PERSON
 
-        elif selection == "Телефон":
+        elif selection == "Номер телефона":
             update.message.reply_text("Введите номер телефона:")
 
             return ADD_TELEPHONE
 
-        elif selection == "Модель":
+        elif selection == "Модель автомобиля":
             update.message.reply_text("Введите модель автомобиля:")
 
             return ADD_MODEL 
@@ -81,7 +72,7 @@ def selecting_new_data (bot,update,user_data):
 
             return ADD_PHOTO
 
-        elif selection == "В чате?":
+        elif selection == "Присутствие в чате":
             update.message.reply_text("Напишите да для отображения в чате:")
 
             return ADD_PRESENCE
@@ -91,6 +82,10 @@ def selecting_new_data (bot,update,user_data):
 
             return ADD_COMMENT
 
+        elif selection == "Выход":
+            update.message.reply_text("Спасибо. Наша миссия на этом выполнена. Drive safe!")
+
+            return EXIT
 
 
 def add_owner (bot, update, user_data):
@@ -104,10 +99,11 @@ def add_owner (bot, update, user_data):
     edition_button = ReplyKeyboardMarkup(
         [['Номер телефона','Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить другие данные?')
+
     update.message.reply_text(new_owner_replytext, reply_markup=edition_button)
+    update.message.reply_text('Дополним данные?')
 
     return KEY_OPTIONS
 
@@ -118,34 +114,34 @@ def add_mobile (bot, update, user_data):
     car.phone_number=user_phrase
     db_session.add(car)
     db_session.commit()
-    new_phone_replytext = 'Телефон владельца новой машины: {}'.format(car.phone_number)
+    new_phone_replytext = 'Телефонный номер нового владельца: {}'.format(car.phone_number)
     edition_button = ReplyKeyboardMarkup(
-        [['Номер телефона','Модель автомобиля'], 
+        [['Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Выберите опцию для дополнения: ')
-    update.message.reply_text(new_phone_replytext,reply_markup=edition_button)
+    update.message.reply_text(new_phone_replytext, reply_markup=edition_button)
+    update.message.reply_text('Добавим еще информацию?')
 
     return KEY_OPTIONS
 
 def add_models (bot, update, user_data):
 
-        car=Car.query.filter(Car.licence_plate==user_data["licence_plate"]).first()
-        user_phrase=update.message.text
-        car.car_modelcode=user_phrase
-        db_session.add(car)
-        db_session.commit()
-        new_model_replytext = 'Модель новой машины: {}'.format(car.car_modelcode)
-        edition_button = ReplyKeyboardMarkup(
-            [['Номер телефона','Модель автомобиля'], 
-            [ 'Цвет', 'Фото'],
-            ['Присутствие в чате','Комментарий','ID']],
-            one_time_keyboard=True)
-        update.message.reply_text('Вы хотите добавить другие данные?')
-        update.message.reply_text(new_model_replytext,reply_markup=edition_button)
+    car=Car.query.filter(Car.licence_plate==user_data["licence_plate"]).first()
+    user_phrase=update.message.text
+    car.car_modelcode=user_phrase
+    db_session.add(car)
+    db_session.commit()
+    new_model_replytext = 'Модель новой машины: {}'.format(car.car_modelcode)
+    edition_button = ReplyKeyboardMarkup(
+        [['Номер телефона','Модель автомобиля'], 
+        [ 'Цвет', 'Фото'],
+        ['Присутствие в чате','Комментарий','Выход']],
+        one_time_keyboard=True)
+    update.message.reply_text(new_model_replytext,reply_markup=edition_button)
+    update.message.reply_text('Вы хотите добавить другие данные?')
 
-        return KEY_OPTIONS
+    return KEY_OPTIONS
 
 def add_colors (bot, update, user_data):
     
@@ -154,14 +150,15 @@ def add_colors (bot, update, user_data):
     car.color=user_phrase
     db_session.add(car)
     db_session.commit()
-    new_color_replytext = 'Цвет новой машины: {}'.format(car.color)
+    new_color_replytext = 'Внесли цвет автомобиля: {}'.format(car.color)
     edition_button = ReplyKeyboardMarkup(
-        [['Номер телефона','Модель автомобиля'], 
+        [['Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить другие данные?')
-    update.message.reply_text(new_color_replytext,reply_markup=edition_button)
+
+    update.message.reply_text(new_color_replytext, reply_markup=edition_button)
+    update.message.reply_text("Что-то еще?")
 
     return KEY_OPTIONS
 
@@ -176,10 +173,10 @@ def add_pictures (bot, update, user_data):
     edition_button = ReplyKeyboardMarkup(
         [['Номер телефона','Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить другие данные?')
     update.message.reply_text(new_picture_replytext,reply_markup=edition_button)
+    update.message.reply_text('Добавить новые данные?')
 
     return KEY_OPTIONS
 
@@ -194,10 +191,10 @@ def add_present_in_chat (bot, update, user_data):
     edition_button = ReplyKeyboardMarkup(
         [['Номер телефона','Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить другие данные?')
     update.message.reply_text(new_presence_replytext,reply_markup=edition_button)
+    update.message.reply_text('Дополним данные?')
 
     return KEY_OPTIONS
 
@@ -212,11 +209,12 @@ def add_comments (bot, update, user_data):
     edition_button = ReplyKeyboardMarkup(
         [['Номер телефона','Модель автомобиля'], 
         [ 'Цвет', 'Фото'],
-        ['Присутствие в чате','Комментарий','ID']],
+        ['Присутствие в чате','Комментарий','Выход']],
         one_time_keyboard=True)
-    update.message.reply_text('Вы хотите добавить другие данные?')
+    
     update.message.reply_text(new_comment_replytext,reply_markup=edition_button)
-
+    update.message.reply_text('Дополним данные?')
+    
     return KEY_OPTIONS
 
 def cancel(bot, update):
@@ -229,7 +227,6 @@ adding_licence_handler = ConversationHandler(
     entry_points=[CommandHandler('add', adding_keyboard, pass_user_data=True)],
     states={
 
-        SELECTED: [MessageHandler(Filters.text, selected_addition, pass_user_data=True)],
         ADD_NUMBER: [MessageHandler(Filters.text, add_licence_plate, pass_user_data=True)],
         KEY_OPTIONS: [MessageHandler(Filters.text, selecting_new_data, pass_user_data=True)],
         ADD_PERSON: [MessageHandler(Filters.text, add_owner, pass_user_data=True)],
@@ -239,6 +236,7 @@ adding_licence_handler = ConversationHandler(
         ADD_PHOTO: [MessageHandler(Filters.text, add_pictures, pass_user_data=True)],
         ADD_PRESENCE: [MessageHandler(Filters.text, add_present_in_chat, pass_user_data=True)],
         ADD_COMMENT: [MessageHandler(Filters.text, add_comments, pass_user_data=True)],
+        EXIT: [MessageHandler(Filters.text, cancel, pass_user_data=True)],
 
     },
     fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True)]
