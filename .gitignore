@@ -1,4 +1,4 @@
-env/
+﻿env/
 __pycache__/
 Описание проекта.pages
 table.numbers
@@ -12,3 +12,4 @@ RusEng_letters.py
 technical/
 bot.log
 edit_func2.py
+cars.db
