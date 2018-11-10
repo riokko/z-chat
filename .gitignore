@@ -1,0 +1,6 @@
+env/
+.DS_Store
+settings.py
+bot.log
+authorisation.py
+cars.db
