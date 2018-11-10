@@ -57,7 +57,7 @@ def select_delete(bot, update, user_data):
 
             if number_of_car == 0:                                           
                 
-                update.message.reply_text('Такого номера нет в базе')
+                update.message.reply_text('Такого номера автомобиля нет в базе')
                 return ConversationHandler.END
 
 
