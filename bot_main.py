@@ -7,7 +7,6 @@ from telegram.ext.dispatcher import run_async
 import logging
 
 import settings
-import sort_by_numbers
 from car_find import find_part
 from car_edit import edit_conv_handler
 from car_del import del_conv_handler
@@ -36,7 +35,7 @@ def main():
     dp.add_handler(adding_licence_handler)
     dp.add_handler(add_admin_conv_handler)
     dp.add_handler(del_admin_conv_handler)
-    dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
+#    dp.add_handler(CommandHandler("plates", sort_by_numbers.plates))
     dp.add_handler(CommandHandler("help", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("start", help_func, pass_user_data=True))
     dp.add_handler(CommandHandler("myid", tg_id_func, pass_user_data=True))
