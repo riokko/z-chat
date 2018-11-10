@@ -1,7 +1,7 @@
 from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram import ReplyKeyboardMarkup
 from carsdb import Car, Zmodels, db_session
-from make_right_number import make_right_number
+from car_make_right_number import make_right_number
 
 SELECTED, ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS = range(10)
 
