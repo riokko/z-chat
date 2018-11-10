@@ -12,7 +12,7 @@ SELECTED, CHANGE_NUMBER, CHANGE_OWNER, CHANGE_COLOR, CHAT_PRESENCE, ADD = range(
 edition_button = ReplyKeyboardMarkup(
         [
         ['Номер телефона', 'Владельца'], 
-        ['Цвет автомобиля', 'Присутсвие в чате'],
+        ['Цвет автомобиля', 'Присутствие в чате'],
         ['Не надо ничего менять']
         ], one_time_keyboard=True, resize_keyboard=True)
 
@@ -90,7 +90,7 @@ def selected_edition(bot, update, user_data):
 
             return CHANGE_COLOR
 
-        if selection == 'Присутсвие в чате':
+        if selection == 'Присутствие в чате':
             update.message.reply_text('Владелец автомобиля в чате?', 
                 reply_markup=button_list_yes_or_no)
 

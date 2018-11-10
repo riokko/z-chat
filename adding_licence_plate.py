@@ -1,6 +1,6 @@
 from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram import ReplyKeyboardMarkup
-from carsdb import Car, Zmodels, db_session
+from carsdb import Car, Admin, db_session
 from car_make_right_number import make_right_number
 
 ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS, EXIT = range(10)
@@ -17,9 +17,19 @@ def make_them_type (bot, update):
     update.message.reply_text("Выберите данные для внесения в базу:",reply_markup=adding_keyboard)
 
 def adding_keyboard(bot,update,user_data):
-    update.message.reply_text('Внесите номер автомобиля:')
+    user_data['chat_id'] = update.message.chat_id
+    admin_query = Admin.query.filter(Admin.tg_id == user_data['chat_id']).all()
+    if admin_query == []:
+        text_to_non_admin = """У вас нет прав для редактирования. Запросите у администратора группы права.
+\nДля этого вам понадобится ваш ID в Телеграме. Вот он: {}.""".format(user_data['chat_id'])
+        update.message.reply_text(text_to_non_admin)
 
-    return ADD_NUMBER
+        return ConversationHandler.END
+
+    else:   
+        update.message.reply_text('Внесите номер автомобиля:')
+
+        return ADD_NUMBER
 
 def add_licence_plate(bot, update, user_data):
     
@@ -81,7 +91,7 @@ def selecting_new_data (bot,update,user_data):
         elif selection == "Выход":
             update.message.reply_text("Спасибо. Наша миссия на этом выполнена. Drive safe!")
 
-            return EXIT
+            return ConversationHandler.END
 
 
 def add_owner (bot, update, user_data):
@@ -235,5 +245,5 @@ adding_licence_handler = ConversationHandler(
         EXIT: [MessageHandler(Filters.text, cancel, pass_user_data=True)],
 
     },
-    fallbacks=[CommandHandler('cancel', cancel, pass_user_data=True)]
+    fallbacks=[CommandHandler('cancel', cancel)]
     )
