@@ -1,7 +1,7 @@
 from telegram.ext import Updater, ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram import ReplyKeyboardMarkup
 from carsdb import Car, Zmodels, db_session
-from make_right_number import make_right_number
+from car_make_right_number import make_right_number
 
 ADD_NUMBER, ADD_PERSON, ADD_TELEPHONE, ADD_MODEL, ADD_COLOUR, ADD_PHOTO, ADD_PRESENCE, ADD_COMMENT, KEY_OPTIONS, EXIT = range(10)
 
@@ -17,11 +17,7 @@ def make_them_type (bot, update):
     update.message.reply_text("Выберите данные для внесения в базу:",reply_markup=adding_keyboard)
 
 def adding_keyboard(bot,update,user_data):
-    c=Car
-    edition_button = ReplyKeyboardMarkup(
-        [['Пожалуйста, введи выше регистрационный номер']],
-        one_time_keyboard=True)
-    update.message.reply_text('Внесите номер автомобиля:', reply_markup=edition_button)
+    update.message.reply_text('Внесите номер автомобиля:')
 
     return ADD_NUMBER
 
