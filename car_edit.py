@@ -1,9 +1,9 @@
 from telegram.ext import (Updater, ConversationHandler, CommandHandler, MessageHandler, 
-    Filters, RegexHandler)
+    Filters)
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 from carsdb import Car, Admin, Zmodels, db_session
-from car_make_right_number import make_right_number
+from car_make_right_number import make_right_number, check_phone_number
 
 # объявляем константы
 SELECTED, CHANGE_NUMBER, CHANGE_OWNER, CHANGE_COLOR, CHAT_PRESENCE, ADD = range(6)
@@ -63,7 +63,7 @@ def select_edition(bot, update, user_data):
                         for car in user_data['user_query_result']], 
                         one_time_keyboard=True, resize_keyboard=True)
                 update.message.reply_text('Какой автомобиль?', reply_markup=car_list)
-                make_right_number(bot, update, user_data)
+#                make_right_number(bot, update, user_data)
 
             else:                                           
                 
@@ -104,10 +104,10 @@ def selected_edition(bot, update, user_data):
 
 
 def change_phone_number(bot, update, user_data):
-    new_phone_number = update.message.text
+    check_phone_number(bot, update, user_data)
 
     for car in user_data['user_query_result']:  
-        car.phone_number = new_phone_number
+        car.phone_number = user_data['cheked_phone_number']
         db_session.commit()
         new_phone_number_replytext = """У {} изменён номер телефона.
 Теперь нужно звонить по {}""".format(car.licence_plate, car.phone_number)
@@ -174,7 +174,7 @@ def change_chat_presence(bot, update, user_data):
 def add_func(bot, update, user_data):
     add_new_car = update.message.text
     if add_new_car == 'Да':
-        update.message.reply_text('Скоро научусь', reply_markup=ReplyKeyboardRemove())
+        update.message.reply_text('Вызовите команду /add', reply_markup=ReplyKeyboardRemove())
         user_data.clear()
         return ConversationHandler.END
 

@@ -191,6 +191,12 @@ def add_present_in_chat (bot, update, user_data):
     car=Car.query.filter(Car.licence_plate==user_data["licence_plate"]).first()
     user_phrase=update.message.text
     car.in_the_chat=user_phrase
+        
+    if user_phrase == 'Да':
+        car.in_the_chat = True
+    else: 
+        car.in_the_chat = False
+        
     db_session.add(car)
     db_session.commit()
     new_presence_replytext = 'Присутствие в чате: {}'.format(car.in_the_chat)

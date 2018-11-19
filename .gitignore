@@ -4,3 +4,5 @@ settings.py
 bot.log
 authorisation.py
 cars.db
+check_phone.py
+check_phone_input.py
