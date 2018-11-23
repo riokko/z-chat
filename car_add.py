@@ -48,7 +48,6 @@ def add_licence_plate_of_car(bot, update, user_data):
 
 def yes_or_no_selecting(bot, update, user_data):
     choice_text = update.message.text
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
     if choice_text == 'Да':
         new_car = Car()
         new_car.licence_plate = user_data['checked_car_licence']
@@ -60,19 +59,20 @@ def yes_or_no_selecting(bot, update, user_data):
         update.message.reply_text(new_licence_plate_replytext)
         return NAME
     if choice_text == 'Нет':
-        update.message.reply_text('Введите новый номер автомобиля через команду /add.')
+        update.message.reply_text('Введите правильный регистрационный номер автомобиля через команду /add.')
         return ConversationHandler.END
 
 
 def add_owner_name(bot, update, user_data):
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
+    user_data['added_car'] = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
     new_owner_name = update.message.text
-    added_car.car_owner = new_owner_name
-    added_car.is_deleted = False
+    user_data['added_car'].car_owner = new_owner_name
+    user_data['added_car'].is_deleted = False
     db_session.commit()
     new_owner_name_replytext = """У {} добавлено имя владельца: {}. 
 
-Введите номер телефона владельца или пропустите этот шаг нажав /skip""".format(added_car.licence_plate, added_car.car_owner)
+Введите номер телефона владельца или пропустите этот шаг нажав /skip""".format(user_data['added_car'].licence_plate, 
+        user_data['added_car'].car_owner)
     update.message.reply_text(new_owner_name_replytext)
 
     return PHONE_NUMBER
@@ -80,12 +80,12 @@ def add_owner_name(bot, update, user_data):
 
 def add_phone_number(bot, update, user_data):
     check_phone_number(bot, update, user_data)
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
-    added_car.phone_number = user_data['cheked_phone_number']
+    user_data['added_car'].phone_number = user_data['cheked_phone_number']
     db_session.commit()
     phone_number_replytext = """У {} добавлен номер телефона — {}. 
 
-Сейчас выберете кузов автомобиля.""".format(added_car.licence_plate, added_car.phone_number)
+Сейчас выберете кузов автомобиля.""".format(user_data['added_car'].licence_plate, 
+        user_data['added_car'].phone_number)
     update.message.reply_text(phone_number_replytext, reply_markup=car_model_keyboard)
 
     return CAR_MODELCODE
@@ -102,14 +102,14 @@ def skip_phone_number(bot, update, user_data):
 def add_car_model(bot, update, user_data):
     users_car_modelcode = update.message.text
     users_car_modelcode = users_car_modelcode.split(':')[0]
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
-    added_car.car_modelcode = users_car_modelcode
+    user_data['added_car'].car_modelcode = users_car_modelcode
     owner_modelcode = z.query.filter(z.modelcode == users_car_modelcode).first()
-    added_car.modelcode_id = owner_modelcode.id
+    user_data['added_car'].modelcode_id = owner_modelcode.id
     db_session.commit()
     car_modelcode_replytext = """Записал, что у {} кузов {}. 
 
-Какой у автомобиля цвет?""".format(added_car.licence_plate, added_car.car_modelcode)
+Какой у автомобиля цвет?""".format(user_data['added_car'].licence_plate, 
+        user_data['added_car'].car_modelcode)
     update.message.reply_text(car_modelcode_replytext)
 
     return CAR_COLOR
@@ -117,12 +117,12 @@ def add_car_model(bot, update, user_data):
 def add_color(bot, update, user_data):
     users_color = update.message.text
     users_color = users_color.lower()
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
-    added_car.color = users_color
+    user_data['added_car'].color = users_color
     db_session.commit()
     car_color_replytext = """Записал, что у {} цвет кузова — {}. 
 
-Владелец автомобиля в чате?""".format(added_car.licence_plate, added_car.color) 
+Владелец автомобиля в чате?""".format(user_data['added_car'].licence_plate, 
+        user_data['added_car'].color) 
     update.message.reply_text(car_color_replytext, reply_markup=button_list_yes_or_no)
 
     return CHAT_PRESENCE
@@ -133,17 +133,16 @@ def add_chat_presense(bot, update, user_data):
         chat_presense_users_text = True
     else: 
         chat_presense_users_text = False
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
-    added_car.in_the_chat = chat_presense_users_text
+    user_data['added_car'].in_the_chat = chat_presense_users_text
     db_session.commit()
 
-    if added_car.in_the_chat == 1:
+    if user_data['added_car'].in_the_chat == 1:
         chat_presence_replytext = """Отметил, что владелец {} есть в чате. 
 
-Добавьте комментарий к автомобилю или пропустите, нажав /skip""".format(added_car.licence_plate)
-    if added_car.in_the_chat == 0:
+Добавьте комментарий к автомобилю или пропустите, нажав /skip""".format(user_data['added_car'].licence_plate)
+    if user_data['added_car'].in_the_chat == 0:
         chat_presence_replytext = """Отметил, что владельца {} нет в чате.
-Добавьте комментарий к автомобилю или пропустите, нажав /skip""".format(added_car.licence_plate)
+Добавьте комментарий к автомобилю или пропустите, нажав /skip""".format(user_data['added_car'].licence_plate)
 
     update.message.reply_text(chat_presence_replytext)
 
@@ -151,14 +150,13 @@ def add_chat_presense(bot, update, user_data):
 
 
 def add_comment(bot, update, user_data):
-    added_car = c.query.filter(c.licence_plate == user_data['checked_car_licence']).first()
-    added_car.comment = update.message.text
+    user_data['added_car'].comment = update.message.text
     db_session.commit()
     comment_replytext = """Внёс комментарий к автомобилю: 
 
 {}
 
-Если нужно что-то отредактировать, воспользуйтесь командой /edit номер_автомобиля.""".format(added_car.comment)
+Если нужно что-то отредактировать, воспользуйтесь командой /edit номер_автомобиля.""".format(user_data['added_car'].comment)
     update.message.reply_text(comment_replytext)
     return ConversationHandler.END
 
@@ -172,6 +170,7 @@ def skip_adding_comment(bot, update, user_data):
 def cancel(bot, update, user_data):
     update.message.reply_text('Ну ок. Пишите если что.', 
         reply_markup=ReplyKeyboardRemove())
+    user_data['added_car'].is_deleted = True
     user_data.clear()
     return ConversationHandler.END
 
