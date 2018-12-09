@@ -1,6 +1,6 @@
 import csv
 
-from carsdb import Car, Zmodels, db_session
+from carsdb import Car, Zmodels, Admin, db_session
 
 
 cars_list = []
@@ -28,4 +28,8 @@ for car_data in cars_list:
         car_data['is_deleted'], car_data['comment'], car_data['modelcode_id'])
     db_session.add(car)
 
+db_session.commit()
+
+admin = Admin(67039566, "недоальпина", True)
+db_session.add(admin)
 db_session.commit()

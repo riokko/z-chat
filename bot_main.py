@@ -11,7 +11,7 @@ from car_find import find_part
 from car_edit import edit_conv_handler
 from car_del import del_conv_handler
 from help_start_tgid import help_func, tg_id_func, admin_list_func
-from adding_licence_plate import adding_licence_handler
+#from adding_licence_plate import adding_licence_handler
 from admin_add import add_admin_conv_handler
 from admin_del import del_admin_conv_handler
 from car_add import add_conv_handler
@@ -25,7 +25,7 @@ def echo(bot, update):
   bot.sendMessage(update.message.chat_id, text=update.message.text)
 
 def main():
-    mybot = Updater(settings.API_KEY, request_kwargs=settings.PROXY)
+    mybot = Updater(settings.API_KEY)#, request_kwargs=settings.PROXY)
     
     logging.info('Бот запускается')
 
