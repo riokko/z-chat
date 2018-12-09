@@ -11,3 +11,5 @@ python-telegram-bot==11.1.0
 pytz==2018.5
 six==1.11.0
 SQLAlchemy==1.2.12
+dnspython==1.15.0
+pymongo==3.7.2
